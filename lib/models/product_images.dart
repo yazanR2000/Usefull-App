@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../models/dark_mode.dart';
 
 class ProductImages extends StatefulWidget {
   final List<dynamic> _images;
@@ -12,6 +13,7 @@ class ProductImages extends StatefulWidget {
 class _ProductImagesState extends State<ProductImages> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
+  final DarkMode _darkMode = DarkMode.getInstance();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,20 +23,19 @@ class _ProductImagesState extends State<ProductImages> {
             itemCount: widget._images.length,
             itemBuilder: (context, index, realIndex) {
               return Container(
-                
-                decoration: BoxDecoration(
-                  //color: Colors.black,
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: NetworkImage(widget._images[index]),
-                    fit: BoxFit.fill,
+                  decoration: BoxDecoration(
+                    //color: Colors.black,
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: NetworkImage(widget._images[index]),
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
               );
             },
             carouselController: _controller,
             options: CarouselOptions(
-              enableInfiniteScroll: false,
+                enableInfiniteScroll: false,
                 autoPlay: false,
                 enlargeCenterPage: true,
                 aspectRatio: 2.0,
@@ -54,10 +55,10 @@ class _ProductImagesState extends State<ProductImages> {
               child: Container(
                 width: 12.0,
                 height: 12.0,
-                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: (Theme.of(context).brightness == Brightness.dark
+                    color: (_darkMode.mode['main_color'] == Colors.black
                             ? Colors.white
                             : Colors.black)
                         .withOpacity(_current == entry.key ? 0.9 : 0.4)),

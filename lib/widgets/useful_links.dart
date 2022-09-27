@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import '../models/dark_mode.dart';
 class UsefulLinks extends StatelessWidget {
-  const UsefulLinks({super.key});
+  UsefulLinks({super.key});
 
   Future<void> _launchUrl(Uri url) async {
     if (!await launchUrl(url)) {
       throw 'Could not launch $url';
     }
   }
+
+  final DarkMode _darkMode = DarkMode.getInstance();
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +22,11 @@ class UsefulLinks extends StatelessWidget {
         child: Column(
           children: [
             link("Stackoverflow", FaIcon(FontAwesomeIcons.stackOverflow), "https://stackoverflow.com/"),
-            
             Divider(),
             
             ListTile(
               onTap: () => _launchUrl(Uri.parse("https://pub.dev/")),
+              textColor: _darkMode.mode['text_color'],
               title: Text("Flutter.dev"),
               leading: FlutterLogo(),
             ),
@@ -44,9 +47,11 @@ class UsefulLinks extends StatelessWidget {
   }
   ListTile link(String title,FaIcon faIcon,String url){
     return ListTile(
+      textColor: _darkMode.mode['text_color'],
       onTap: () => _launchUrl(Uri.parse(url)),
       title: Text(title),
       leading: faIcon,
+      iconColor: _darkMode.mode['text_color'],
     );
   }
 }

@@ -37,7 +37,7 @@ class _ShopState extends State<Shop> {
         }
         
         final List<String> categories = _dummyData.categories;
-        print(categories.length);
+        //print(categories.length);
         return GridView.builder(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
