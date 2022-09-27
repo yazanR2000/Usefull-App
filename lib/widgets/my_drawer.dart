@@ -96,8 +96,9 @@ class _MyDrawerState extends State<MyDrawer> {
                           actions: [
                             TextButton(
                               onPressed: () {
-                                Navigator.of(context).pop();
-                                Provider.of<Users>(context,listen: false).logout();
+                                exit(0);
+                                // Navigator.of(context).pop();
+                                // Provider.of<Users>(context,listen: false).logout();
                               },
                               child: const Text("YES"),
                             ),
