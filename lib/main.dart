@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         ),
         home: Consumer<Users>(
           builder: (_,dummy,ch) {
-            return Home();
+            return dummy.isAuth ? Home() : Auth();
           }
         ),
         routes: {
